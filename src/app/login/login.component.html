@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <h2>Login</h2>
+    <form [formGroup]="LoginForm" (ngSubmit)="onSubmit(LoginForm.value)">
+        <div class="login-container">
+        <div class="formgroup">
+            <label>Username</label>
+            <input formControlName="userName"  type = "text" class="form-control">
+  
+        </div>
+        <div class="formgroup">
+            <label>Password</label>
+            <input formControlName="password" type = "password" class="form-control">
+        </div>
+        <button class="btn btn-link" type="submit">Login</button>
+        <a routerLink="/register" class="btn btn-link">Register</a>
+        </div>
+      </form>
+  </div>

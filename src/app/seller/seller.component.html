@@ -1,0 +1,53 @@
+<div *ngIf="userDet">
+  <h1>List of products:</h1>
+<div id="content" style="display: inline-block;" *ngFor="let user of userDet; index as i">
+  <div id="contentInside" class="card" style="width: 20rem; text-align:center;">
+  
+      <img [src]="user.url" class="card-img-top" alt="Card image">
+      <div class="card-body" style="background-color: gray; height: 25rem; text-align: center; padding-top: 35%">
+        <h4 class="card-title">Product Name : {{user.prodName}}</h4>
+        <p class="card-text">Description: {{user.descb}}</p>
+        <p>Actualprice : {{user.actprice}}</p>
+        <p>Discountprice: {{user.disprice}}</p>
+        <p>Price:{{user.actprice-user.disprice}}</p>
+        
+        <button class="btn btn-primary" [routerLink]="['/sellerprod',i]">EditDetails</button>
+      </div>
+      
+    </div>
+    <div>
+  
+</div>
+</div>
+</div>
+<div id="contentIns" >
+<div id="contentInside" class="card" title="Add New Product Details" routerLink="/sellerprod/new" style="width: 20rem; text-align:center;margin:0 auto;">
+
+    <div class="card-body" style="background-color:cornflowerblue; height: 25rem; text-align: center; padding-top: 35%">
+        <h2 style="color: black; font-size: 100px">+</h2>
+        <h2 style="color: black;">ADD PRODUCT</h2>
+    </div>
+</div>
+</div>
+
+
+<div id="content">
+  <div id="contentInside" *ngFor="let container of containers" class="card" style="width: 20rem; text-align:center;display:inline-block;">
+  
+    <img [src]="user.img" class="card-img-top" alt="Card image">
+    <div class="card-body" style="background-color: gray; height: 25rem; text-align: center; padding-top: 35%">
+      <h4 class="card-title">Product Name: {{user.prodName}}</h4>
+      <p class="card-text">Description: {{user.descb}}</p>
+      <p>Actualprice : {{user.actprice}}</p>
+      <p>Discountprice: {{user.disprice}}</p>
+      <p>Price:{{user.actprice-user.disprice}}</p>
+        
+        <button class="btn btn-primary" (click)="onCreate()">AddDetails</button>
+        <button class="btn btn-primary" (click)="onDisplay()">Details</button>
+      </div>
+      
+    </div>
+    
+    
+    
+  </div>
