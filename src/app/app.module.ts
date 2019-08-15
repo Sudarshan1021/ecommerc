@@ -12,7 +12,8 @@ import { SellerComponent } from './seller/seller.component';
 import { BuyerComponent } from './buyer/buyer.component';
 import { AdminComponent } from './admin/admin.component';
 import {AuthGuardService} from './auth-guard.service';
-import {SellerProdSerService} from './seller-prod-ser.service'
+import {SellerProdSerService} from './seller-prod-ser.service';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 import { SellerprodComponent } from './sellerprod/sellerprod.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,6 +44,7 @@ import {MatDialogModule} from '@angular/material';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ShowHidePasswordModule,
     ReactiveFormsModule,
     StorageServiceModule,
     BrowserAnimationsModule,

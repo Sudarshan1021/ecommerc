@@ -21,6 +21,7 @@ export class SellerprodComponent implements OnInit {
     image:''
   }
   url;
+  url1;
   inde:any;
   userDet:any;
   flag=true;
@@ -79,13 +80,17 @@ export class SellerprodComponent implements OnInit {
     }
     onSubmit(formData){
       
-     
+  
      if(this.inde=='new'){
+       this.url1=this.url;
       formData["url"] = this.url;
      this.store.addDet(formData);
 
      }
      else{
+       if(this.url!=this.url1){
+        formData["url"] = this.url;
+       }
        this.store.updateDet(formData,this.inde);
        
      }

@@ -1,7 +1,8 @@
 <div class="container-fluid">
-        <h2>Product</h2>
+      
         <form [formGroup]="sellerprodForm" (ngSubmit)="onSubmit(sellerprodForm.value)">
-                
+                        <div class="prod-container">
+                        <h2>Product</h2>
             <div class="formgroup">
                     <label>Name:</label>
                     <input formControlName="prodName" type = "text" class="form-control" [value] = "det.prodName">
@@ -28,9 +29,10 @@
                                                     
 
                                                     <button [disabled]='!sellerprodForm.valid' class="btn btn-link" type="submit" >Save</button>
-                                                
+                                                </div>  
+                                                      
                     </form>
-                    <img [src]="url">
+                    
                     
                     </div>
 
