@@ -1,57 +1,72 @@
-<div *ngIf="userDet; else other">
+<div *ngIf="userDet.length>0; else other">
   <h1>List of products:</h1>
- <div id="content" style="display: inline-block;" *ngFor="let user of userDet; index as i">
-  <div id="contentInside" class="card" style="width: 20rem; text-align:center;">
-  
-    <img [src]="user.url" class="card-img-top" alt="Card image">
-      <div class="card-body" style="background-color: gray; height: 25rem; text-align: center; padding-top: 35%">
-        <h4 class="card-title">Product Name : {{user.prodName}}</h4>
-        <p class="card-text">Description: {{user.descb}}</p>
-        <p>Actualprice : {{user.actprice}}</p>
-        <p>Discountprice: {{user.disprice}}</p>
-        <p>Price:{{user.actprice-user.disprice}}</p>
+  <br>
+  <div id="content" style="display: inline-block;" *ngFor="let user of userDet; index as i">
+      
+    <div id="contentInside" class="card" style="width: 20rem; text-align:center;">
+       
         
+      <img [src]="user.url" class="card-img-top" alt="Card image">
+    
+      
+      
+      <div class="card-body card-body-cascade" style="background-color:lightblue; height: 27rem;text-align: center; padding-top: 15%">
+        <h4 class="card-title">Product Name : {{user.prodName}}</h4><br>
+        <p class="card-text">Description: {{user.descb}}</p><hr>
+        <p>Actualprice : {{user.actprice}}</p><hr>
+        <p>Discountprice: {{user.disprice}}</p><hr>
+        <p>Price:{{user.actprice-user.disprice}}</p><br>
+
         <button class="btn btn-primary" [routerLink]="['/sellerprod',i]">EditDetails</button>
       </div>
+
+      <div class="card-footer text-muted text-center">
+          
+        </div>
       
+
+    </div>
+    <div>
+
+    </div>
   </div>
- <div>
-  
-</div>
-</div>
 </div>
 
 <ng-template #other>
-<p>No Products to be displayed!</p>
+  <p>No Products to be displayed!</p>
 
-<div id="contentIns" >
-  <div id="contentInside" class="card" title="Add New Product Details" routerLink="/sellerprod/new" style="width: 20rem; text-align:center;margin:0 auto;">
-  
-      <div class="card-body" style="background-color:cornflowerblue; height: 25rem; text-align: center; padding-top: 35%">
-          <h2 style="color: black; font-size: 100px">+</h2>
-          <h2 style="color: black;">ADD PRODUCT</h2>
+  <div id="contentIns">
+    <div id="contentInside" class="card" title="Add New Product Details" routerLink="/sellerprod/new"
+      style="width: 20rem; text-align:center;margin:0 auto;">
+
+      <div class="card-body"
+        style="background-color:cornflowerblue; height: 25rem; text-align: center; padding-top: 35%">
+        <h2 style="color: black; font-size: 100px">+</h2>
+        <h2 style="color: black;">ADD PRODUCT</h2>
       </div>
-  </div>
+    </div>
   </div>
 
 </ng-template>
 
 
 
-<div id="contentIns" >
-<div id="contentInside" class="card" title="Add New Product Details" routerLink="/sellerprod/new" style="width: 20rem; text-align:center;margin:0 auto;">
+<div id="contentIns">
+  <div id="contentInside" class="card" title="Add New Product Details" routerLink="/sellerprod/new"
+    style="width: 20rem; text-align:center;margin:0 auto;">
 
     <div class="card-body" style="background-color:cornflowerblue; height: 25rem; text-align: center; padding-top: 35%">
-        <h2 style="color: black; font-size: 100px">+</h2>
-        <h2 style="color: black;">ADD PRODUCT</h2>
+      <h2 style="color: black; font-size: 100px">+</h2>
+      <h2 style="color: black;">ADD PRODUCT</h2>
     </div>
-</div>
+  </div>
 </div>
 
 
 <div id="content">
-  <div id="contentInside" *ngFor="let container of containers" class="card" style="width: 20rem; text-align:center;display:inline-block;">
-  
+  <div id="contentInside" *ngFor="let container of containers" class="card"
+    style="width: 20rem; text-align:center;display:inline-block;">
+
     <img [src]="user.img" class="card-img-top" alt="Card image">
     <div class="card-body" style="background-color: gray; height: 25rem; text-align: center; padding-top: 35%">
       <h4 class="card-title">Product Name: {{user.prodName}}</h4>
@@ -59,9 +74,9 @@
       <p>Actualprice : {{user.actprice}}</p>
       <p>Discountprice: {{user.disprice}}</p>
       <p>Price:{{user.actprice-user.disprice}}</p>
-        
-        <button class="btn btn-primary" (click)="onCreate()">AddDetails</button>
-        <button class="btn btn-primary" (click)="onDisplay()">Details</button>
-      </div>
+
+      <button class="btn btn-primary" (click)="onCreate()">AddDetails</button>
+      <button class="btn btn-primary" (click)="onDisplay()">Details</button>
     </div>
   </div>
+</div>

@@ -1,39 +1,50 @@
+<div class="clearfix">
 <div class="container-fluid">
-      
+        
+
         <form [formGroup]="sellerprodForm" (ngSubmit)="onSubmit(sellerprodForm.value)">
-                        <div class="prod-container">
+                <div class="box">
                         <h2>Product</h2>
-            <div class="formgroup">
-                    <label>Name:</label>
-                    <input formControlName="prodName" type = "text" class="form-control" [value] = "det.prodName">
-                    </div>
+                        
+                        <div class="formgroup">
+                                
+                                        <label>Name:</label>
+                        
+                                <input  formControlName="prodName" type="text" class="form-control" [value]="det.prodName">
+                                
+                        </div>
 
-                    <div class="formgroup">
-                            <label>Description:</label>
-                            <input formControlName="descb" type = "text" class="form-control" [value] = "det.descb">
-                            </div>
+                        <div class="formgroup">
+                                <label>Description:</label>
+                                <input formControlName="descb" type="text" class="form-control" [value]="det.descb">
+                        </div>
 
-                            <div class="formgroup">
-                                    <label>Actual Price:</label>
-                                    <input formControlName="actprice" type = "number" class="form-control" [value] = "det.actprice">
-                                    </div>
+                        <div class="formgroup">
+                                <label>Actual Price:</label>
+                                <input formControlName="actprice" type="number" class="form-control"
+                                        [value]="det.actprice">
+                        </div>
 
-                                    <div class="formgroup">
-                                            <label>Discount:</label>
-                                            <input formControlName="disprice" type = "number" class="form-control" [value] = "det.disprice">
-                                            </div>
+                        <div class="formgroup">
+                                <label>Discount:</label>
+                                <input formControlName="disprice" type="number" class="form-control"
+                                        [value]="det.disprice">
+                        </div>
 
-                                            
-                                          
-                                                    <input formControlName="image" type='file' (change)="onSelectFile($event)" class="form-control">
-                                                    
 
-                                                    <button [disabled]='!sellerprodForm.valid' class="btn btn-link" type="submit" >Save</button>
-                                                </div>  
-                                                      
-                    </form>
-                    
-                    
-                    </div>
 
-                    
+                        <input formControlName="image" type='file' (change)="onSelectFile($event)" class="form-control">
+                        
+
+                        <button [disabled]='!sellerprodForm.valid' class="btn btn-link" type="submit">Save</button>
+                        
+                </div>
+                
+        </form>
+        
+
+</div>
+<div class="box">
+<img [src]="url" width="100%">
+</div>
+</div>

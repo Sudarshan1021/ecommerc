@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,Validators} from '@angular/forms'
+import { FormBuilder, Validators } from '@angular/forms'
 import { PasswordValidator } from '../shared/password.validator';
 import { StoreService } from '../store.service';
 import { Router } from '@angular/router';
@@ -13,33 +13,33 @@ export class RegisterComponent implements OnInit {
 
 
   //registrationForm = new FormGroup({
-   // userName: new FormControl('Sudarshan'),
-    //password: new FormControl(' '),
-    //confirmPassword: new FormControl(' ')
+  // userName: new FormControl('Sudarshan'),
+  //password: new FormControl(' '),
+  //confirmPassword: new FormControl(' ')
 
   //});
 
-  get userName(){
-   return this.registrationForm.get('userName');
+  get userName() {
+    return this.registrationForm.get('userName');
 
   }
-  get password(){
+  get password() {
     return this.registrationForm.get('password');
   }
-  constructor(private fb: FormBuilder,private storeService:StoreService,private router: Router) { 
-    
+  constructor(private fb: FormBuilder, private storeService: StoreService, private router: Router) {
+
   }
 
   Role: any = ['Admin', 'Buyer', 'Seller']
 
-  
+
   registrationForm = this.fb.group({
-    userName:['',Validators.required],
-    password:['',[Validators.required,Validators.minLength(6)]],
-    confirmPassword:['',Validators.required],
+    userName: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', Validators.required],
     roleName: ['', [Validators.required]]
   },
-   { validator : PasswordValidator });
+    { validator: PasswordValidator });
   ngOnInit() {
   }
   // Choose city using select dropdown
@@ -53,8 +53,8 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  onSubmit(formData){
+  onSubmit(formData) {
     this.storeService.addPerson(formData);
     this.router.navigate(['login']);
-}
+  }
 }

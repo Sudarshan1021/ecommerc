@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import {MatDialogModule} from '@angular/material';
+import{MatInputModule} from '@angular/material';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import {MatDialogModule} from '@angular/material';
     MatIconModule,
     MatButtonModule,
     LayoutModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [StoreService,AuthGuardService,SellerProdSerService,MatDialogModule,{ provide: MatDialogRef, useValue: {} },],
   bootstrap: [AppComponent],

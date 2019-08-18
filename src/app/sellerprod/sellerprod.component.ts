@@ -13,7 +13,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 })
 export class SellerprodComponent implements OnInit {
   det= {
-    // ind: [{value: null, disabled:true}],
+    
     prodName:'',
     descb:'',
     actprice:'',
