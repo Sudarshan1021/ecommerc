@@ -5,20 +5,25 @@ import{MatDialogRef} from '@angular/material';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
+import{ProductService} from '../shared/product.service';
+import {NgForm} from '@angular/forms';
+
+//declare var M:any;
 @Component({
   selector: 'app-sellerprod',
   templateUrl: './sellerprod.component.html',
   styleUrls: ['./sellerprod.component.css'],
+  providers:[ProductService]
   
 })
 export class SellerprodComponent implements OnInit {
   det= {
-    
+    id:'',
     prodName:'',
     descb:'',
     actprice:'',
     disprice:'',
-    image:''
+    
   }
   url;
   url1;
@@ -26,24 +31,55 @@ export class SellerprodComponent implements OnInit {
   userDet:any;
   flag=true;
   sellerprodForm;
-  constructor(private dialog:MatDialog,public router:Router,private fb: FormBuilder,private route: ActivatedRoute,private store:SellerProdSerService,private dialogRef:MatDialogRef<SellerprodComponent>) {
-    this.userDet=this.store.getDet();
+  product:any;
+   products:any;
+  constructor(private productService:ProductService,private dialog:MatDialog,public router:Router,private fb: FormBuilder,private route: ActivatedRoute,private store:SellerProdSerService,private dialogRef:MatDialogRef<SellerprodComponent>) {
+   // this.userDet=this.store.getDet();
     this.sellerprodForm = this.fb.group( this.det );
     
     
    }
+
+   setProduct(prod) {
+    this.products = prod;
+    console.log("Name"+prod.name);
+    this.det.id=prod._id;
+    this.det.prodName=prod.name;
+    this.det.descb=prod.description;
+    this.det.actprice=prod.actualprice;
+    this.det.disprice=prod.discountprice;
+    this.sellerprodForm = this.fb.group( this.det );
+  
+    // this.det= {
+    //   id:prod._id,
+    //   prodName:prod.name,
+    //   descb:prod.description,
+    //   actprice:prod.actualprice,
+    //   disprice:prod.discountprice
+      
+    // }
+    
+    console.log("prods  ",this.products);
+  }
 
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
       this.inde = params.get('id');
       // this.editform(this.inde);
-    if(this.inde!='new'){
-      this.det = this.store.getDet()[this.inde];
-      this.sellerprodForm = this.fb.group( this.det );
+    if(this.inde!='new'){//edit
+      //this.det = this.store.getDet()[this.inde];
+    
+     this.productService.getwithid(this.inde)
+     .subscribe(products=>{ console.log("Hi"+products.name);this.setProduct(products)});
+      //  this.det={id:products._id,prodName:products.name,descb:products.description,actprice:products.actualprice,disprice:products.discountprice};});
+     //this.productService.getProductList().subscribe(products => this.setProduct(products));
+  //   console.log("HHHH"+this.det.id);
+      //this.sellerprodForm = this.fb.group( this.det );
     }
     else{
       this.sellerprodForm = this.fb.group( this.det );
+
     }
     });
   }
@@ -79,24 +115,44 @@ export class SellerprodComponent implements OnInit {
       }
     }
     onSubmit(formData){
+      if(this.inde=='new'){
+        console.log(formData);
+        this.productService.postProduct(formData)
+        .subscribe((res)=>{
+          alert("Inserted Successfully");
+        });
+        this.router.navigate(['seller']);
+        }
+        else{
+          console.log("Update");
+          console.log("form"+formData.prodName);
+          this.productService.update(formData);
+          this.router.navigate(['seller']);
+        }
+      
+      
+
+
+
+
       
   
-     if(this.inde=='new'){
-       this.url1=this.url;
-      formData["url"] = this.url;
-     this.store.addDet(formData);
+    //  if(this.inde=='new'){
+    //    this.url1=this.url;
+    //   formData["url"] = this.url;
+    //  this.store.addDet(formData);
 
-     }
-     else{
-       if(this.url!=this.url1){
-        formData["url"] = this.url;
-       }
-       this.store.updateDet(formData,this.inde);
+    //  }
+    //  else{
+    //    if(this.url!=this.url1){
+    //     formData["url"] = this.url;
+    //    }
+    //    this.store.updateDet(formData,this.inde);
        
-     }
-     //this.onClose();
-     // window.location.reload();
-      this.router.navigate(['seller']);
+    //  }
+    //  //this.onClose();
+    //  // window.location.reload();
+    //   this.router.navigate(['seller']);
      
     }
   

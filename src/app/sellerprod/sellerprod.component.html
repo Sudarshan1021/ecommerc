@@ -6,34 +6,35 @@
                 <div class="box">
                         <h2>Product</h2>
                         
+                        
                         <div class="formgroup">
                                 
-                                        <label>Name:</label>
-                        
-                                <input  formControlName="prodName" type="text" class="form-control" [value]="det.prodName">
+                         <label>Name:</label>
+        
+                          <input  formControlName="prodName" type="text" class="form-control" [value]="det?.prodName">
                                 
                         </div>
 
                         <div class="formgroup">
                                 <label>Description:</label>
-                                <input formControlName="descb" type="text" class="form-control" [value]="det.descb">
+                                <input formControlName="descb" type="text" class="form-control" [value]="det?.descb">
                         </div>
 
                         <div class="formgroup">
                                 <label>Actual Price:</label>
                                 <input formControlName="actprice" type="number" class="form-control"
-                                        [value]="det.actprice">
+                                        [value]="det?.actprice">
                         </div>
 
                         <div class="formgroup">
                                 <label>Discount:</label>
                                 <input formControlName="disprice" type="number" class="form-control"
-                                        [value]="det.disprice">
+                                        [value]="det?.disprice">
                         </div>
 
 
 
-                        <input formControlName="image" type='file' (change)="onSelectFile($event)" class="form-control">
+                     <!--   <input formControlName="image" type='file' (change)="onSelectFile($event)" class="form-control">-->
                         
 
                         <button [disabled]='!sellerprodForm.valid' class="btn btn-link" type="submit">Save</button>
@@ -45,6 +46,57 @@
 
 </div>
 <div class="box">
-<img [src]="url" width="100%">
+<img [src]="url" width="100%"> 
 </div>
 </div>
+
+<!--
+<div class="clearfix">
+ <div class="container-fluid">
+  <form #productForm="ngForm" (ngsubmit)="onSubmit(productForm)">
+                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="productService.selectedProduct._id">
+         <div class="input-field">
+                        <label>
+                                        Name:
+                                </label>
+          <input type="text" name = "name" #name = "ngModel" [(ngModel)]="productService.selectedProduct.name" placeholder="Enter name">
+
+          
+        </div>
+
+        <div class="input-field">
+                        <label>
+                                        Description:
+                                </label>
+                        <input type="text" name = "description" #name = "ngModel" [(ngModel)]="productService.selectedProduct.description" placeholder="Description">
+              
+                        
+                      </div>
+
+
+                      <div class="input-field">
+                                <label>
+                                                ActualPrice:
+                                        </label>
+                                <input type="number" name = "actualprice" #name = "ngModel" [(ngModel)]="productService.selectedProduct.actualprice" placeholder="Actual Price">
+                      
+                                
+                              </div>
+
+
+                              <div class="input-field">
+                                        <label>
+                                                        DiscountPrice:
+                                                  </label>
+                                        <input type="number" name = "discountprice" #name = "ngModel" [(ngModel)]="productService.selectedProduct.discountprice" placeholder="Discount Price">
+                              
+                                       
+                                      </div>
+
+                                      <button [disabled]='!productForm.valid' class="btn btn-link" type="submit">Save</button>
+  </form>
+
+
+
+ </div>
+</div>-->

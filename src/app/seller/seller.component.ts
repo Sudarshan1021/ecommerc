@@ -4,21 +4,34 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 import { SellerprodComponent } from '../sellerprod/sellerprod.component';
 import {SellerProdSerService} from '../seller-prod-ser.service';
 import {Router} from '@angular/router';
+import{ProductService} from '../shared/product.service';
+import {Product} from '../shared/product.model';
 
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
-  styleUrls: ['./seller.component.css']
+  styleUrls: ['./seller.component.css'],
+  providers:[ProductService]
 })
 export class SellerComponent implements OnInit {
   containers = [];
   userDet:any;
-  constructor(private dialog:MatDialog,private store:SellerProdSerService,public router:Router) { 
-    this.userDet=this.store.getDet();
-    console.log(this.userDet[1]);
+  products: any;
+  constructor(private productService:ProductService,private dialog:MatDialog,private store:SellerProdSerService,public router:Router) { 
+    //this.userDet=this.store.getDet();
+    console.log("sud");
+    //console.log(this.userDet[1]);
   }
 
-  ngOnInit() {
+  setProduct(prod) {
+    this.products = prod;
+    console.log("prods  ",this.products);
+  }
+ 
+  async ngOnInit() {
+    await this.productService.getProductList().subscribe(products => this.setProduct(products));
+    
+    
   }
   add() {
     this.containers.push(this.containers.length);
