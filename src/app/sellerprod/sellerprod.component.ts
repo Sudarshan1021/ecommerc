@@ -19,10 +19,13 @@ import {NgForm} from '@angular/forms';
 export class SellerprodComponent implements OnInit {
   det= {
     id:'',
+    sellerName:'',
     prodName:'',
     descb:'',
     actprice:'',
     disprice:'',
+    price:'',
+    image:''
     
   }
   url;
@@ -44,10 +47,12 @@ export class SellerprodComponent implements OnInit {
     this.products = prod;
     console.log("Name"+prod.name);
     this.det.id=prod._id;
+    this.det.sellerName = prod.sellerName;
     this.det.prodName=prod.name;
     this.det.descb=prod.description;
     this.det.actprice=prod.actualprice;
     this.det.disprice=prod.discountprice;
+    this.det.image=prod.imagePath;
     this.sellerprodForm = this.fb.group( this.det );
   
     // this.det= {
@@ -103,20 +108,37 @@ export class SellerprodComponent implements OnInit {
 
   
 // }
-  onSelectFile(event) { // called each time file input changes
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  // onSelectFile(event) { // called each time file input changes
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = reader.result;
-      }
-      }
-    }
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       this.url = reader.result;
+  //     }
+  //     }
+  //   }
+
+  onImagePicked(event:Event){
+    const file = (event.target as HTMLInputElement).files[0];
+   //this.sellerprodForm.patchValue({image:file});
+    
+    const reader = new FileReader();
+    reader.onload = () =>{
+      this.url = reader.result;
+      this.sellerprodForm.patchValue({image:this.url});
+      this.det.image=this.url;
+    };
+    reader.readAsDataURL(file);
+
+
+  }
     onSubmit(formData){
       if(this.inde=='new'){
-        console.log(formData);
+        console.log("ss"+this.url);
+        console.log("SSS"+formData.sellerName);
+        //formData["image"]=this.url;
         this.productService.postProduct(formData)
         .subscribe((res)=>{
           alert("Inserted Successfully");
@@ -125,7 +147,7 @@ export class SellerprodComponent implements OnInit {
         }
         else{
           console.log("Update");
-          console.log("form"+formData.prodName);
+          console.log("form"+formData.image);
           this.productService.update(formData);
           this.router.navigate(['seller']);
         }

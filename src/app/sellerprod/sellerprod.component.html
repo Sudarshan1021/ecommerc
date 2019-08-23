@@ -2,10 +2,16 @@
 <div class="container-fluid">
         
 
-        <form [formGroup]="sellerprodForm" (ngSubmit)="onSubmit(sellerprodForm.value)">
+        <form [formGroup]="sellerprodForm" (ngSubmit)="onSubmit(sellerprodForm.value)" enctype="multipart/form-data">
                 <div class="box">
                         <h2>Product</h2>
-                        
+                        <div class="formgroup">
+                                
+                                <label>Seller Name:</label>
+               
+                                 <input  formControlName="sellerName" type="text" class="form-control" [value]="det?.sellerName">
+                                       
+                               </div>
                         
                         <div class="formgroup">
                                 
@@ -32,6 +38,10 @@
                                         [value]="det?.disprice">
                         </div>
 
+                        <div>
+                                <button class="btn btn-primary" type="button"(click)="filepicker.click()">Choose image</button>
+                                <input type="file" #filepicker (change)="onImagePicked($event)">
+                        </div>
 
 
                      <!--   <input formControlName="image" type='file' (change)="onSelectFile($event)" class="form-control">-->
@@ -46,7 +56,7 @@
 
 </div>
 <div class="box">
-<img [src]="url" width="100%"> 
+<img [src]="det?.image" width="100%"> 
 </div>
 </div>
 

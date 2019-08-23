@@ -19,6 +19,13 @@ export class ProductService {
   constructor(private http:HttpClient) { }
 
   postProduct(prod){
+    // const postData = new FormData();
+    // postData.append("name",prod.prodName);
+    // postData.append("description",prod.descb);
+    // postData.append("actualprice",prod.actprice);
+    // postData.append("discountprice",prod.disprice);
+    // postData.append("image",prod.image);
+    console.log("DDD"+prod.sellerName);
     return this.http.post(this.baseURL,prod);
   }
 
@@ -26,10 +33,10 @@ export class ProductService {
     return this.http.get(this.baseURL);
   }
   getwithid(id){
-    return this.http.get<{_id:string;name:string;description:string;actualprice:string;discountprice:string}>("http://localhost:3000/products/"+id);
+    return this.http.get<{_id:string;sellerName:string;name:string;description:string;actualprice:string;discountprice:string;imagepath:string}>("http://localhost:3000/products/"+id);
   }
   update(prod){
-    const newprod={id:prod.id,name:prod.prodName,description:prod.descb,actualprice:prod.actprice,discountprice:prod.disprice};
+    const newprod={id:prod.id,sellerName:prod.sellerName,name:prod.prodName,description:prod.descb,actualprice:prod.actprice,discountprice:prod.disprice,imagepath:prod.image};
     console.log("lll"+newprod.name);
     return this.http.put("http://localhost:3000/products/"+newprod.id,newprod).subscribe(res=>console.log(res));
   }

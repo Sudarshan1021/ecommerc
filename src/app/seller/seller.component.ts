@@ -26,6 +26,7 @@ export class SellerComponent implements OnInit {
   setProduct(prod) {
     this.products = prod;
     console.log("prods  ",this.products);
+    console.log("seller"+this.products[1].sellerName);
   }
  
   async ngOnInit() {

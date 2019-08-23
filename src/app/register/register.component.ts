@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms'
 import { PasswordValidator } from '../shared/password.validator';
 import { StoreService } from '../store.service';
 import { Router } from '@angular/router';
+import {UserService} from '../shared/user.service';
 
 @Component({
   selector: 'app-register',
@@ -19,14 +20,14 @@ export class RegisterComponent implements OnInit {
 
   //});
 
-  get userName() {
-    return this.registrationForm.get('userName');
+  // get userName() {
+  //   return this.registrationForm.get('userName');
 
-  }
-  get password() {
-    return this.registrationForm.get('password');
-  }
-  constructor(private fb: FormBuilder, private storeService: StoreService, private router: Router) {
+  // }
+  // get password() {
+  //   return this.registrationForm.get('password');
+  // }
+  constructor(private fb: FormBuilder, private storeService: StoreService, private router: Router,private user:UserService) {
 
   }
 
@@ -34,12 +35,12 @@ export class RegisterComponent implements OnInit {
 
 
   registrationForm = this.fb.group({
-    userName: ['', Validators.required],
+    name: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', Validators.required],
-    roleName: ['', [Validators.required]]
-  },
-    { validator: PasswordValidator });
+    email: ['', Validators.required],
+    role: ['', [Validators.required]]
+  });
+    //{ validator: PasswordValidator });
   ngOnInit() {
   }
   // Choose city using select dropdown
@@ -49,12 +50,16 @@ export class RegisterComponent implements OnInit {
     })
   }
   get roleName() {
-    return this.registrationForm.get('roleName');
+    return this.registrationForm.get('role');
   }
 
 
   onSubmit(formData) {
-    this.storeService.addPerson(formData);
+    //this.storeService.addPerson(formData);
+    this.user.postUser(formData)
+    .subscribe((res)=>{
+      alert("Registered Successfully");
+    });
     this.router.navigate(['login']);
   }
 }

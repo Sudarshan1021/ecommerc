@@ -15,6 +15,7 @@ import {AuthGuardService} from './auth-guard.service';
 import {SellerProdSerService} from './seller-prod-ser.service';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import {ProductService} from './shared/product.service';
+import {UserService} from './shared/user.service';
 
 import { SellerprodComponent } from './sellerprod/sellerprod.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -64,7 +65,7 @@ import{FormsModule} from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ProductService,StoreService,AuthGuardService,SellerProdSerService,MatDialogModule,{ provide: MatDialogRef, useValue: {} },],
+  providers: [UserService,ProductService,StoreService,AuthGuardService,SellerProdSerService,MatDialogModule,{ provide: MatDialogRef, useValue: {} },],
   bootstrap: [AppComponent],
   entryComponents:[SellerprodComponent]
 })

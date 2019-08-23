@@ -13,3 +13,6 @@
   clear: both;
   display: table;
 }
+input[type="file"]{
+  visibility: hidden;
+}
