@@ -1,25 +1,188 @@
-<div>
-  <h1>List of products:</h1>
-  <br>
-  <div id="content" style="display: inline-block;" *ngFor="let user of products; index as i">
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+</style>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <p class="navbar-brand" style="color:cornsilk; margin-top:17px;">Ecomm</p>
+  
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <button class="btn btn-link" type="button" (click)="Home()">Home</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-link" type="button" (click)="All()">All Products</button>
+      </li>
+    </ul>
+  
+      <!-- Dropdown -->
+      <ul class="navbar-nav">
+          <button class="btn btn-primary"  routerLink="/sellerprod/new"  type="button">(+)Add product</button>
+          &nbsp;<p style="color:white;margin-top:16px;">Hi {{retusername1}}</p>
+      <!--<li class="nav-item dropdown" >
+
+        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+            Hi {{retusername1}}
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Link 1</a>
+          <a class="dropdown-item" href="#">Link 2</a>
+          <a class="dropdown-item" href="#">Link 3</a>
+        </div>
+      </li>-->
+      <button class="btn btn-link" (click)="onLogout()" type="button">Logout</button>
       
-    <div id="contentInside" class="card" style="width: 20rem; text-align:center;">
-       
+      </ul>
+    
+  </nav>
+<br>
+
+  <div *ngIf="Toggle;" >
+
+      <div class="card-deck">
+  
+          <div id="content" style="display: inline-block;" *ngFor="let user of userproducts; index as i">
+             <br>
+                <div class="col-sm-6">
+            <div id="contentInside" class="card border-dark mb-3">
+              <div class="whole-img">
+                <label style="display: inline; font-size: 1vw"><strong>Seller Name : {{user.sellerName}}</strong></label><p style="font-size:1vw;"> </p><br>
+              <div class="banner-img">
+                
+              <img [src]="user.imagePath" class="card-img-top" alt="Card image">
+            </div>
+            <br>
+          </div>
+          
+              
+              <div class="card-body card-body-cascade" style="background-color:lightblue;text-align:center;padding-top: 15%">
+              
+                <h5 class="card-title" style="font-size:2vw;"> {{user.name}}</h5><hr><br>
+                <mat-form-field>
+                    <label>Description:</label>
+                <textarea matInput readonly
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="3">
+                {{user.description}}
+                </textarea>
+              </mat-form-field><hr>
+               <!-- <p class="card-text" style="white-space: nowrap;overflow:scroll">Description: {{user.description}}</p><hr>-->
+               <label> MRP:</label><p><del>{{user.actualprice}}</del>
+              &nbsp;{{user.actualprice-user.discountprice}}</p><br>
+             <!--  <label>Discount Name :</label><p>{{user.discountprice}}</p><hr>
+               <label>Seller Name :</label><p>{{user.actualprice-user.discountprice}}</p><br>-->
+                <button class="btn btn-primary" (click)="onCreate(user)">Show Product</button>&nbsp;
+                <button class="btn btn-primary" [routerLink]="['/sellerprod',user._id]">EditDetails</button>
+              </div>
+        
+              
+              
+        
+            </div>
+          </div>
+              
+            </div>
+            <div class="col-sm-3"></div>
+          </div>
+        
+</div>
+
+  
+
+          <div *ngIf="Toggle1;" >
+
+              <div class="card-deck">
+          
+                  <div id="content" style="display: inline-block;" *ngFor="let user of products; index as i">
+                     <br>
+                        <div class="col-sm-6">
+                    <div id="contentInside" class="card border-dark mb-3">
+                      <div class="whole-img">
+                        <label style="display: inline; font-size: 1vw"><strong>Seller Name : {{user.sellerName}}</strong></label><p style="font-size:1vw;"> </p><br>
+                      <div class="banner-img">
+                        
+                      <img [src]="user.imagePath" class="card-img-top" alt="Card image">
+                    </div>
+                    <br>
+                  </div>
+                  
+                      
+                      <div class="card-body card-body-cascade" style="background-color:lightblue;text-align:center;">
+                      
+                        <h5 class="card-title" style="font-size:2vw;"> {{user.name}}</h5><hr><br>
+                        <mat-form-field>
+                            <label>Description:</label>
+                        <textarea matInput readonly
+                        cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3">
+                        {{user.description}}
+                        </textarea>
+                      </mat-form-field><hr>
+                       <!-- <p class="card-text" style="white-space: nowrap;overflow:scroll">Description: {{user.description}}</p><hr>-->
+                       <label> MRP:</label><p><del>{{user.actualprice}}</del> 
+                      &nbsp;{{user.actualprice-user.discountprice}}</p><br>
+                     <!--  <label>Discount Name :</label><p>{{user.discountprice}}</p><hr>
+                       <label>Seller Name :</label><p>{{user.actualprice-user.discountprice}}</p><br>-->
+                        <button class="btn btn-primary" (click)="onCreate(user)">Show Product</button>&nbsp;
+                        <button class="btn btn-primary" [routerLink]="['/sellerprod',user._id]">EditDetails</button>
+                      </div>
+                
+                     
+                      
+                
+                    </div>
+                  </div>
+                      
+                    </div>
+                    <div class="col-sm-3"></div>
+                  </div>
+          
+
+
+        
+         
+  
+  
+  
+  
+  
+  <ng-template #msgElseBlock>
+  <div class="card-deck">
+  
+  <div id="content" style="display: inline-block;" *ngFor="let user of products; index as i">
+     <br>
+        <div class="col-sm-6">
+    <div id="contentInside" class="card border-dark mb-3">
+      <div class="whole-img">
+        <label style="display: inline; font-size: 1vw">Seller Name : {{user.sellerName}}</label><p style="font-size:1vw;"> </p><br>
+      <div class="banner-img">
         
       <img [src]="user.imagePath" class="card-img-top" alt="Card image">
-    
+    </div>
+    <br>
+  </div>
+  
       
+      <div class="card-body card-body-cascade" style="background-color:lightblue;text-align:center;padding-top: 15%">
       
-      <div class="card-body card-body-cascade" style="background-color:lightblue; height: 30rem;text-align: center; padding-top: 15%">
-        <h2 class="card-title">Seller Name : {{user.sellerName}}</h2><br>
-       
-        <h5 class="card-title">Product Name : {{user.name}}</h5><br>
-
-        <p class="card-text">Description: {{user.description}}</p><hr>
-        <p>Actualprice : {{user.actualprice}}</p><hr>
-        <p>Discountprice: {{user.discountprice}}</p><hr>
-        <p>Price:{{user.actualprice-user.discountprice}}</p><br>
-
+        <h5 class="card-title" style="font-size:2vw;"> {{user.name}}</h5><hr><br>
+        <mat-form-field>
+            <label>Description:</label>
+        <textarea matInput readonly
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="3">
+        {{user.description}}
+        </textarea>
+      </mat-form-field><hr>
+       <!-- <p class="card-text" style="white-space: nowrap;overflow:scroll">Description: {{user.description}}</p><hr>-->
+       <label> MRP:</label><p><del>{{user.actualprice}}</del> 
+      &nbsp;{{user.actualprice-user.discountprice}}</p>
+     <!--  <label>Discount Name :</label><p>{{user.discountprice}}</p><hr>
+       <label>Seller Name :</label><p>{{user.actualprice-user.discountprice}}</p><br>-->
+        <button class="btn btn-primary" (click)="onCreate(user)">Show Product</button>&nbsp;
         <button class="btn btn-primary" [routerLink]="['/sellerprod',user._id]">EditDetails</button>
       </div>
 
@@ -29,11 +192,13 @@
       
 
     </div>
-    <div>
-
-    </div>
   </div>
-</div>
+      
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+
+</ng-template>
 
 <ng-template #other>
   <p>No Products to be displayed!</p>
@@ -54,16 +219,7 @@
 
 
 
-<div id="contentIns">
-  <div id="contentInside" class="card" title="Add New Product Details" routerLink="/sellerprod/new"
-    style="width: 20rem; text-align:center;margin:0 auto;">
 
-    <div class="card-body" style="background-color:cornflowerblue; height: 25rem; text-align: center; padding-top: 35%">
-      <h2 style="color: black; font-size: 100px">+</h2>
-      <h2 style="color: black;">ADD PRODUCT</h2>
-    </div>
-  </div>
-</div>
 
 
 <div id="content">
@@ -82,4 +238,6 @@
       <button class="btn btn-primary" (click)="onDisplay()">Details</button>
     </div>
   </div>
+</div>
+
 </div>

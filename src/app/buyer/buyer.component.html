@@ -1,1 +1,100 @@
-<p>buyer works!</p>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+  </style>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Brand -->
+      <p class="navbar-brand" style="color:cornsilk">Ecomm</p>
+    
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+       <!-- <li class="nav-item">
+          <button class="btn btn-link" type="button" (click)="Home()">Home</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-link" type="button" (click)="All()">All Products</button>
+        </li>-->
+      </ul>
+    
+        <!-- Dropdown -->
+        <ul class="navbar-nav">
+            
+            <div class="input-group md-form form-sm form-1 pl-0">
+                
+                <input class="form-control my-0 py-1" [(ngModel)]="searchVal" (keyup)="searchEmp()" type="text" placeholder="Search" aria-label="Search">
+              </div>
+
+            
+        <!--<li class="nav-item dropdown" >
+  
+          <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+              Hi {{retusername1}}
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Link 1</a>
+            <a class="dropdown-item" href="#">Link 2</a>
+            <a class="dropdown-item" href="#">Link 3</a>
+          </div>
+        </li>-->
+        <button class="btn btn-link" (click)="onLogout()" type="button">Logout</button>
+        
+        </ul>
+      
+    </nav>
+  
+
+
+
+
+
+    
+    <p *ngIf="searchRes.length<1">No Match Found for : <strong>{{searchVal}}</strong></p>
+    <div class="card-deck">
+  
+            <div id="content" style="display: inline-block;" *ngFor="let user of prodDetails; index as i">
+               <br>
+               <div class="col-sm-6">
+              <div id="contentInside" class="card border-dark mb-3" *ngIf="searchRes.includes(i)">
+                 
+                  
+                  <div class="whole-img">
+                      <label style="display: inline; font-size: 1vw"><strong>Seller Name : {{user.sellerName}}</strong></label><p style="font-size:1vw;"> </p><br>
+                    <div class="banner-img">
+                      
+                    <img [src]="user.imagePath" class="card-img-top" alt="Card image">
+                  </div>
+                  <br>
+                </div>
+              
+                
+                
+                <div class="card-body card-body-cascade" style="background-color:lightblue;text-align:center;">
+                      
+                    <h5 class="card-title" style="font-size:2vw;"> {{user.name}}</h5><hr><br>
+                    <mat-form-field>
+                        <label>Description:</label>
+                    <textarea matInput readonly
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3">
+                    {{user.description}}
+                    </textarea>
+                  </mat-form-field><hr>
+                   <!-- <p class="card-text" style="white-space: nowrap;overflow:scroll">Description: {{user.description}}</p><hr>-->
+                   <label> MRP:</label><p><del>{{user.actualprice}}</del> 
+                  &nbsp;{{user.actualprice-user.discountprice}}</p><br>
+                 <!--  <label>Discount Name :</label><p>{{user.discountprice}}</p><hr>
+                   <label>Seller Name :</label><p>{{user.actualprice-user.discountprice}}</p><br>-->
+                    <button class="btn btn-primary" (click)="onCreate(user)">Show Product</button>&nbsp;
+                    
+                  </div>
+            
+                 
+                  
+            
+                </div>
+              </div>
+                  
+                </div>
+                <div class="col-sm-3"></div>
+              </div>
+      

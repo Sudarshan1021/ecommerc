@@ -36,7 +36,7 @@ export class ProductService {
     return this.http.get<{_id:string;sellerName:string;name:string;description:string;actualprice:string;discountprice:string;imagepath:string}>("http://localhost:3000/products/"+id);
   }
   update(prod){
-    const newprod={id:prod.id,sellerName:prod.sellerName,name:prod.prodName,description:prod.descb,actualprice:prod.actprice,discountprice:prod.disprice,imagepath:prod.image};
+    const newprod={id:prod.id,name:prod.prodName,description:prod.descb,actualprice:prod.actprice,discountprice:prod.disprice,imagepath:prod.image};
     console.log("lll"+newprod.name);
     return this.http.put("http://localhost:3000/products/"+newprod.id,newprod).subscribe(res=>console.log(res));
   }

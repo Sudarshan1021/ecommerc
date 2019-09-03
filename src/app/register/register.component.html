@@ -1,24 +1,34 @@
+<style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+        </style>
 <body>
     <div class="container-fluid">
-
-        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
+         <!--   <h2 style="font-family: 'Comic Sans MS', cursive, sans-serif;font-size: 4vw;font-weight: bold; color:forestgreen;text-align: center;margin-top: -40px;padding-bottom: 50px;">Registration</h2>
+            <br>-->
+        
+        <form class ="form-horizontal" [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
+                <fieldset class="border p-2">
+                        <legend  class="w-auto" style="font-family: 'Open Sans',sans-serif;color:darkslateblue;font-size: 4vw;font-weight: bold;">Register</legend>
+          <br>
             <div class="register-container">
-                <h2 style="text-align: center;font-size: 4vw;font-weight: bold;">Registration</h2>
                 <br>
-                <div class="formgroup">
-                       
-                    <label
-                        style="color:burlywood;font-style: italic;font-size: 2vw;font-weight: bold;">Username:</label>
+                
+                                <div class="formgroup">
+                    <label class="control-label col-sm-2">Username:</label>
+                    <div class="col-sm-10">
                         <input formControlName="name"
-                        type="text" class="form-control">
-                   <!-- <input [class.is-invalid]="name.invalid && name.touched" formControlName="name"
+                        type="text" class="form-control input-sm">
+                        <small *ngIf="serverErrorMessages" class="text-danger"> {{serverErrorMessages}}</small>
+                    <!--<input [class.is-invalid]="name.invalid && name.touched" formControlName="name"
                         type="text" class="form-control">
                     <small [class.d-none]="name.valid || name.untouched" class="text-danger">Username is
                         required</small>-->
                 </div>
+                </div>
+                
                 <div class="formgroup">
-                    <label
-                        style="color:burlywood;font-style: italic;font-size: 2vw;font-weight: bold;">Password:</label>
+                    <label class="control-label col-sm-2">Password:</label>
+                    <div class="col-sm-10">
                     <input formControlName="password" type="password" class="form-control">
                     <!--<div *ngIf="password.invalid && password.touched">
                         <small *ngIf="password.errors?.required" class="text-danger">Password is required</small>
@@ -26,28 +36,39 @@
                             characters</small>
                     </div>-->
                 </div>
+                </div>
                 <div class="formgroup">
-                    <label style="color:burlywood;font-style: italic;font-size: 2vw;font-weight: bold;">Email:</label>
-                    <input formControlName="email"
+                  <label class="control-label col-sm-2">Email:</label>
+                  <div class="col-sm-10"> 
+                  <input formControlName="email"
                         type="text" class="form-control">
                    <!-- <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords do not match</small>-->
                 </div>
+                </div>
                 <div class="formgroup">
-                    <label style="color:burlywood;font-style: italic;font-size: 2vw;font-weight: bold;">Select
-                        Role:</label>
+                       
+                    <label class="control-label col-sm-2">SelectRole:</label>
+                    <div class="col-sm-10">
                     <select class="custom-select" (change)="changeRole($event)" formControlName="role">
-                        <option value="">Choose your role</option>
+                        <option value=""></option>
                         <option *ngFor="let role of Role" [ngValue]="role">{{role}}</option>
                     </select>
                 </div>
+                </div>
+                
                 <br>
-                <button [disabled]='!registrationForm.valid' class="btn btn-success" type="submit">Register</button>
+                <div class="col-sm-offset-2 col-sm-10">
+                <button [disabled]='!registrationForm.valid' class="btn btn-primary" type="submit">Register</button>
                 &nbsp;
                 <button routerLink="/login" class="btn btn-secondary">Cancel</button>
-
             </div>
-
+            </div>
+</fieldset>
         </form>
+        
 
-    </div>
+ </div>
+
+ 
+ 
 </body>

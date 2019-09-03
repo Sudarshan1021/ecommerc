@@ -1,21 +1,28 @@
+<style>
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+</style>
+
 <body>
     <div class="container-fluid">
+     
+            <h2 style="font-family: 'Open Sans',sans-serif;font-size: 4vw;font-weight: bold; color:crimson;text-align: center;">Login</h2>
 
         <form [formGroup]="LoginForm" (ngSubmit)="onSubmit(LoginForm.value)">
+           <!--     <fieldset class="border p-2">
+                        <legend  class="w-auto" style="font-family:'Arial Black', Gadget, sans-serif;color: crimson;text-align: center;font-size: 4vw;font-weight: bold;">Login</legend>-->
+                     
             <div class="login-container">
-                <h2 style="color: crimson;text-align: center;font-size: 4vw;font-weight: bold;">Login</h2>
                 <br>
                 <div class="formgroup">
                         
-                    <label style="color:burlywood;font-style: italic;font-size: 2vw;font-weight: bold;">Username:</label>
+                    <label >Username:</label>
                     <input formControlName="name" type="text" class="form-control">
 
                 </div>
                 <br>
                 <div class="formgroup">
-                    <label
-                        style="color:burlywood;font-style: italic;font-size: 2vw;font-weight: bold;">Password:</label>
-                    <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+                    <label>Password:</label>
+                    <show-hide-password size="md" btnStyle="primary" [btnOutline]="false">
                         <input formControlName="password" type="password" class="form-control">
                     </show-hide-password>
                 </div>
@@ -23,6 +30,7 @@
                 <button class="btn btn-link" type="submit">Login</button>
                 <a routerLink="/register" class="btn btn-link">Register</a>
             </div>
+        
         </form>
     </div>
 

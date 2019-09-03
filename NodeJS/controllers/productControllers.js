@@ -83,7 +83,6 @@ router.put('/:id',(req,res)=>{
 
     const prod = new Product({
         _id:req.body.id,
-        sellerName:req.body.sellerName,
         name:req.body.name,
         description:req.body.description,
         actualprice:req.body.actualprice,

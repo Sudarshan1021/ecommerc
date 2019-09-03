@@ -16,7 +16,7 @@ export class LoginComponent {
   userDet: any;
   Det1:any;
   returnUrl: string;
-
+  retrole;
   constructor(private user :UserService,private authservice:AuthGuardService,private storeService:StoreService,private fb: FormBuilder,private router: Router){}
 
   LoginForm = this.fb.group({
@@ -28,7 +28,28 @@ export class LoginComponent {
      this.user.login(formData).subscribe(
        res=>{
          this.user.setToken(res['token']);
-         this.router.navigate(['seller']);
+        //  this.user.getUserProfile().subscribe(
+        //    res=>{
+        //       this.retrole = res['user'];
+        //    },
+        //    err=>{}
+        //  );
+        //  switch(this.retrole){
+        //   case 'Admin':
+        //           this.router.navigate(['admin']);
+        //         break;
+        
+        //         case 'Buyer':
+        //             this.router.navigate(['buyer']);
+        //           break;
+        
+        //           case 'Seller':
+        //               this.router.navigate(['seller']);
+        //             break;
+
+
+        //  }
+         this.router.navigate(['loading']);
        },
        err=>{
        console.log(err);

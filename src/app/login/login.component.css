@@ -6,7 +6,11 @@ body{
 }
 
 .login-container{
-    max-width: 400px; 
+    max-width: 500px; 
     margin: 60px auto 0;
   }
-  
+  label{
+    font-family:'Open Sans',sans-serif;
+    color:burlywood;
+    font-size: 2vw;
+  }

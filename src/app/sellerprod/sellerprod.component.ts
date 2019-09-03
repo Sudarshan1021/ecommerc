@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import{ProductService} from '../shared/product.service';
+import{UserService} from '../shared/user.service';
 import {NgForm} from '@angular/forms';
 
 //declare var M:any;
@@ -34,9 +35,10 @@ export class SellerprodComponent implements OnInit {
   userDet:any;
   flag=true;
   sellerprodForm;
+  retusername;
   product:any;
    products:any;
-  constructor(private productService:ProductService,private dialog:MatDialog,public router:Router,private fb: FormBuilder,private route: ActivatedRoute,private store:SellerProdSerService,private dialogRef:MatDialogRef<SellerprodComponent>) {
+  constructor(private user:UserService,private productService:ProductService,private dialog:MatDialog,public router:Router,private fb: FormBuilder,private route: ActivatedRoute,private store:SellerProdSerService,private dialogRef:MatDialogRef<SellerprodComponent>) {
    // this.userDet=this.store.getDet();
     this.sellerprodForm = this.fb.group( this.det );
     
@@ -47,7 +49,7 @@ export class SellerprodComponent implements OnInit {
     this.products = prod;
     console.log("Name"+prod.name);
     this.det.id=prod._id;
-    this.det.sellerName = prod.sellerName;
+    //this.det.sellerName = prod.sellerName;
     this.det.prodName=prod.name;
     this.det.descb=prod.description;
     this.det.actprice=prod.actualprice;
@@ -83,7 +85,18 @@ export class SellerprodComponent implements OnInit {
       //this.sellerprodForm = this.fb.group( this.det );
     }
     else{
-      this.sellerprodForm = this.fb.group( this.det );
+      this.user.getUserName().subscribe(
+        res=>{
+           this.retusername = res['user'];
+          console.log("User"+this.retusername.name);
+           
+           this.sellerprodForm = this.fb.group( this.det );
+            //this.username = this.username.name;
+           
+        },
+        err=>{}
+      );
+      //this.sellerprodForm = this.fb.group( this.det );
 
     }
     });
@@ -136,14 +149,19 @@ export class SellerprodComponent implements OnInit {
   }
     onSubmit(formData){
       if(this.inde=='new'){
-        console.log("ss"+this.url);
+        console.log("User11"+this.retusername.name);
+        //this.sellerprodForm.patchValue({sellerName:this.retusername.name});
+        formData["sellerName"] = this.retusername.name;
+        //console.log("ss"+this.url);
         console.log("SSS"+formData.sellerName);
+
         //formData["image"]=this.url;
         this.productService.postProduct(formData)
         .subscribe((res)=>{
           alert("Inserted Successfully");
+          this.router.navigate(['seller']);
         });
-        this.router.navigate(['seller']);
+      //  this.router.navigate(['seller']);
         }
         else{
           console.log("Update");

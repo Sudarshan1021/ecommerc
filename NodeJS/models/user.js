@@ -5,16 +5,17 @@ const jwt = require('jsonwebtoken');
 
 var UserSchema = mongoose.Schema({
     name:{type:String,
-    //required:'Name cannot be empty'
+        unique:true,
+        required:'Name cannot be empty'
 },
     password:{type:String,
         required:'Password cannot be empty',
-      //  minlength:[6,'Password must be atleast 6 characters long']
+        minlength:[6,'Password must be atleast 6 characters long']
     },
-    email:{type:String},
-        //required:'Email cannot be empty'},
+    email:{type:String,
+        required:'Email cannot be empty'},
     role:{type:String,
-        //required:'Role cannot be empty'
+        required:'Role cannot be empty'
     },
     saltSecret:{type:String}
 });
@@ -38,7 +39,7 @@ UserSchema.methods.verifyPassword = function(password){
 UserSchema.methods.generateJwt = function(){
     return jwt.sign({_id:this._id},
         "SECRET#123",{
-            expiresIn:"2m"
+            expiresIn:"10m"
         });
 }
 

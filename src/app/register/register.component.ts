@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private storeService: StoreService, private router: Router,private user:UserService) {
 
   }
+  serverErrorMessages:string;
 
   Role: any = ['Admin', 'Buyer', 'Seller']
 
@@ -57,9 +58,22 @@ export class RegisterComponent implements OnInit {
   onSubmit(formData) {
     //this.storeService.addPerson(formData);
     this.user.postUser(formData)
-    .subscribe((res)=>{
+    .subscribe(
+      res=>{
       alert("Registered Successfully");
-    });
-    this.router.navigate(['login']);
+      this.serverErrorMessages = ' ';
+      this.router.navigate(['login']);
+    },
+    err=>{
+      if(err.status==422){
+        this.serverErrorMessages = err.error.join('<br/>');
+      }
+      else
+      this.serverErrorMessages = 'Username is already registered';
+      setTimeout(()=>this.serverErrorMessages=' ',6000);
+    }
+    
+    );
+    
   }
 }

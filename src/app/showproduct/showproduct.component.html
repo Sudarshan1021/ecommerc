@@ -1,0 +1,50 @@
+<div class="clearfix">
+    <div class="container-fluid">
+
+        <h2 style="text-align: center">Details of Products</h2>
+
+
+<div class="box">
+    <mat-form-field>
+        <label>Seller Name:</label>
+        <textarea matInput readonly
+        >
+          {{sellername}}
+        </textarea>
+      </mat-form-field> <br>
+      <mat-form-field>
+            <label>Name:</label>
+        <textarea matInput readonly
+        >
+        {{name}}
+        </textarea>
+      </mat-form-field><br> 
+      <mat-form-field>
+            <label>Description:</label>
+        <textarea matInput readonly
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="5">
+        {{description}}
+        </textarea>
+      </mat-form-field> <br>
+      <mat-form-field>
+            <label>Actual Price:</label>
+        <textarea matInput readonly>
+                {{actualprice}}
+        </textarea>
+      </mat-form-field> <br>
+      <mat-form-field>
+            <label>Discount Price:</label>
+        <textarea matInput readonly>
+                {{discountprice}}
+        </textarea>
+      </mat-form-field> 
+</div>
+</div>
+
+<div class="box">
+        <img [src]="imagePath" width="100%"> 
+        </div>
+
+</div>

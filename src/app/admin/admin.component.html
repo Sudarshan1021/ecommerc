@@ -1,1 +1,25 @@
-<p>admin works!</p>
+
+<div class="input-group mb-3">
+    <label>Highest profit Seller:</label>
+        <input type="text" [(ngModel)]="highestseller" class="form-control" placeholder="Highest Seller!!" aria-label="Highest seller name" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="uniquesellers()">Find Highest profit Seller</button>
+        </div>
+      </div>
+<br>
+      <div class="input-group mb-3">
+            <label>Highest profit Product:</label>
+                <input type="text" [(ngModel)]="highestproduct" class="form-control" placeholder="Highest Seller!!" aria-label="Highest seller name" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="uniqueproducts()">Find Highest profit Product</button>
+                </div>
+              </div>
+
+<br>
+              <div class="input-group mb-3">
+                    <label>Highest Selling Product:</label>
+                        <input type="text" [(ngModel)]="highestnumpro" class="form-control" placeholder="Highest Seller!!" aria-label="Highest seller name" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" type="button" (click)="highestnumofprod()">Find Highest Selling Product</button>
+                        </div>
+                      </div>

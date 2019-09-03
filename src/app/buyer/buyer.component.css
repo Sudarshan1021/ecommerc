@@ -1,0 +1,39 @@
+*{
+    font-family:'Open Sans',sans-serif;
+}
+.contentInside{
+    
+    display: inline-flex;
+    
+}
+.whole-img{
+    background-color:wheat;
+}
+
+.banner-img {
+    padding: 5px 5px 0;
+    text-align: center;
+}
+
+.banner-img img {
+    width: 80%;
+    height: 110px;
+    border-radius: 5px;
+    
+}
+
+.card{
+    margin-right: 5px;
+    margin-left:5px;
+    margin-bottom: 5px;
+    height:600px;
+    width:18rem;
+}
+
+#content{
+    
+    background:white;
+    
+    background-size:cover;
+      
+  }
